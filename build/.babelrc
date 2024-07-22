@@ -1,0 +1,16 @@
+{
+    "presets": 
+    [
+        "@babel/preset-typescript",
+        [
+            "@babel/preset-env",
+            {
+                "targets": "> 0.25%, not dead", // Adjust according to your target environments
+                "useBuiltIns": false // This ensures Babel won't include polyfills
+            }
+        ]
+    ],
+    "ignore": [
+        ".*\\.d\\.ts"
+    ]
+}

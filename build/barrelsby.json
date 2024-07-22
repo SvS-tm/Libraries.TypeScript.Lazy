@@ -1,0 +1,5 @@
+{
+    "location": "all",
+    "exclude": [ ".*\\.d\\.ts" ],
+    "delete": true
+}

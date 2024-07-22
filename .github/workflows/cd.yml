@@ -1,0 +1,35 @@
+name: cd
+on:
+  pull_request:
+    types: [closed]
+    branches: ['release*']
+jobs:
+  publish_release:
+    if: ${{  github.event.pull_request.merged == true }}
+    runs-on: ubuntu-latest
+    steps:
+    
+    - name: download latest artifact
+      uses: svs-tm/libraries.github.actions/github/download-latest-artifact@main
+      with:
+        token: ${{ github.token }}
+        owner: ${{ github.repository_owner }}
+        repository: ${{ github.event.repository.name }}
+        artifact_name: ${{ github.event.pull_request.id }}
+        path: ${{ github.workspace }}
+
+    - name: create release
+      uses: svs-tm/libraries.github.actions/github/create-release-from-manifest@main
+      with:
+        token: ${{ github.token }}
+        owner: ${{ github.repository_owner }}
+        repository: ${{ github.event.repository.name }}
+        path: ${{ github.workspace }}
+        target_commitish: ${{ github.event.pull_request.merge_commit_sha }}
+
+    - name: publish packages
+      uses: svs-tm/libraries.github.actions/github/publish-packages-from-manifest@main
+      with:
+        token: ${{ github.token }}
+        path: ${{ github.workspace }}
+ 

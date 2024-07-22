@@ -1,0 +1,45 @@
+name: ci
+on:
+  check_run:
+  pull_request: 
+    types: [opened, synchronize]
+jobs:     
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: checkout
+      uses: actions/checkout@v4
+    
+    - name: validate release version
+      if: ${{ startsWith(github.base_ref, 'release') }}
+      uses: svs-tm/libraries.github.actions/github/validate-release-version@main
+      with:
+        token: ${{ github.token }}
+        owner: ${{ github.repository_owner }}
+        repository: ${{ github.event.repository.name }}
+        path: ${{ github.workspace }}
+
+    - name: setup
+      uses: svs-tm/libraries.github.actions/typescript/setup@main
+
+    - name: restore
+      uses: svs-tm/libraries.github.actions/typescript/restore@main
+
+    - name: build
+      uses: svs-tm/libraries.github.actions/typescript/build@main
+
+    - name: test
+      uses: svs-tm/libraries.github.actions/typescript/test@main
+
+    - name: pack
+      uses: svs-tm/libraries.github.actions/typescript/pack@main
+  
+    - name: publish artifact
+      if: ${{ startsWith(github.base_ref, 'release') }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ github.event.pull_request.id }}
+        path: '${{ github.workspace }}/bin/.release-artifact'
+        overwrite: true
+        retention-days: 1

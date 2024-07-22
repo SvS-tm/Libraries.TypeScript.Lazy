@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "node",
+    "lib": [
+      "ESNext",
+      "ESNext.Disposable"
+    ],
+    "types": [
+      "reflect-metadata"
+    ],
+    "outDir": "bin",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "baseUrl": "src"
+  },
+  "include": [
+    "src"
+  ]
+}

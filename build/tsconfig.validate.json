@@ -1,0 +1,11 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "noEmit": true,
+        "baseUrl": "../obj",
+        "rootDir": "../obj"
+    },
+    "include": [
+        "../obj"
+    ]
+}

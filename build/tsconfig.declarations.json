@@ -1,0 +1,9 @@
+{
+    "extends": "./tsconfig.validate.json",
+    "compilerOptions": {
+        "outDir": "../bin",
+        "noEmit": false,
+        "declaration": true,
+        "emitDeclarationOnly": true
+    }
+}
