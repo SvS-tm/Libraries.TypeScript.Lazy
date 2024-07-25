@@ -22,18 +22,28 @@ jobs:
 
     - name: setup
       uses: svs-tm/libraries.github.actions/typescript/setup@main
+      with:
+        token: ${{ github.token }}
 
     - name: restore
       uses: svs-tm/libraries.github.actions/typescript/restore@main
+      with:
+        token: ${{ github.token }}
 
     - name: build
       uses: svs-tm/libraries.github.actions/typescript/build@main
+      with:
+        token: ${{ github.token }}
 
     - name: test
       uses: svs-tm/libraries.github.actions/typescript/test@main
+      with:
+        token: ${{ github.token }}
 
     - name: pack
       uses: svs-tm/libraries.github.actions/typescript/pack@main
+      with:
+        token: ${{ github.token }}
   
     - name: publish artifact
       if: ${{ startsWith(github.base_ref, 'release') }}

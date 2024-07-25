@@ -28,7 +28,7 @@ jobs:
         target_commitish: ${{ github.event.pull_request.merge_commit_sha }}
 
     - name: publish packages
-      uses: svs-tm/libraries.github.actions/github/publish-packages-from-manifest@main
+      uses: svs-tm/libraries.github.actions/typescript/publish-packages-from-manifest@main
       with:
         token: ${{ github.token }}
         path: ${{ github.workspace }}
